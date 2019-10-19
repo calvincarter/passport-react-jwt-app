@@ -12,7 +12,8 @@ class AuthManager {
     }
 
     isAuthenticated() {
-        return Cookies.get('jwt') != null;
+        const jwt =  Cookies.get('jwt');
+        return jwt != null && jwt !== "";
         //new Date().getTime() < this.expiresAt;
     }
 

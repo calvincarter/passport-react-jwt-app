@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import API from "../utils/API";
-import { Link } from "react-router-dom";
 import "../App.css"; 
 import AuthManager from "../utils/AuthManager";
 import Nav from "../components/Nav";
