@@ -13,7 +13,7 @@ passport.use(new GitHubStrategy({
     
     console.log(profile);
     
-    db.User.findOne({githubId: profile.id})
+    return db.User.findOne({githubId: profile.id})
     .then(user => { 
       if(!user) {
         const account = { 
@@ -23,7 +23,7 @@ passport.use(new GitHubStrategy({
   
         const jwtToken = jwt.sign(account, process.env.JWT_SECRET);
         
-        db.User.create({...account, jwtToken})
+        return db.User.create({...account, jwtToken})
          .then(user => {
           console.log(user);
           return cb(null, user);
@@ -50,7 +50,7 @@ opts.secretOrKey = process.env.JWT_SECRET;
 passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
     console.log(jwt_payload);
 
-    db.User.findOne({accessToken: jwt_payload.accessToken})
+    return db.User.findOne({accessToken: jwt_payload.accessToken})
     .then(user => {
       if (!user) {
           return done(null, false);

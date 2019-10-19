@@ -23,11 +23,11 @@ class Home extends Component {
         {
           this.state.isAuthenticated ? (
             <button className="button button-blue" onClick={this.handleLogOut}>
-            <span class="fa fa-list-alt"></span>LOGOUT
+            LOGOUT
             </button>
           ) : (
             <a className="button button-blue" href="http://localhost:3001/login">
-            <span class="fa fa-list-alt"></span>LOGIN
+            LOGIN
             </a>
           )
         

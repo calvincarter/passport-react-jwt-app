@@ -66,15 +66,12 @@ class Images extends Component {
         {
           this.state.isAuthenticated ? (
             <Fragment>
-              <div>
-                <input type="text" name="imageInput" value={this.imageInput} onChange={this.handleInputChange} />
-                <button className="button button-blue" onClick={this.addImage}>
-                  <span class="fa fa-list-alt"></span>Add Image
-                </button>
-              </div>
-
+              <input type="text" name="imageInput" value={this.imageInput} onChange={this.handleInputChange} />
+              <button className="button button-blue" onClick={this.addImage}>
+                <span className="fa fa-list-alt"></span>Add Image
+              </button>
               {
-                this.state.images.map((image) => <img src={image.link} /> )
+                this.state.images.map((image) => <img key={image._id} src={image.link} /> )
               }
             </Fragment>
           ) : (
