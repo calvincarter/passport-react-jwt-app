@@ -11,12 +11,8 @@ module.exports = function(app) {
         // Succesful authentication! 
         // Store the generated jwt in the client cookie
         res.cookie('jwt', req.user.jwtToken);
-
-        if(!process.env.NODE_ENV) {
-            res.redirect(process.env.REACT_DEV_SERVER);
-        } else {
-            res.sendFile(path.join(__dirname, "../client/build/index.html"));
-        }
+        
+        res.redirect(routeHelper());
     });
     app.use(passport.initialize());
 
