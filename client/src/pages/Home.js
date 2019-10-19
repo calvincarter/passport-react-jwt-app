@@ -24,7 +24,7 @@ class Home extends Component {
             LOGOUT
             </button>
           ) : (
-            <a className="button button-blue" href={process.env.REACT_APP_PROD_URL_LOGIN || "http://localhost:3001/login"}>
+            <a className="button button-blue" href={process.env.REACT_APP_PROD_URL_LOGIN || process.env.REACT_APP_DEV_URL_LOGIN_BACKEND}>
             LOGIN
             </a>
           )
