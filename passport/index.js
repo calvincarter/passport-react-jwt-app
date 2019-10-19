@@ -11,14 +11,15 @@ passport.use(new GitHubStrategy({
   },
   function(accessToken, refreshToken, profile, cb) {
     
-    console.log(profile);
+    console.log(profile.login);
     
     return db.User.findOne({githubId: profile.id})
-    .then(user => { 
+    .then(user => {
       if(!user) {
-        const account = { 
+        const account = {
           accessToken: accessToken, 
-          githubId: profile.id
+          githubId: profile.id,
+          username: profile.username
         };
   
         const jwtToken = jwt.sign(account, process.env.JWT_SECRET);

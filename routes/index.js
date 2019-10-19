@@ -17,7 +17,7 @@ module.exports = function(app) {
 
     
     app.get("/api/image", passport.authenticate('jwt', {session: false}), (req, res) => { 
-        db.ImageStore.find({})
+        db.ImageStore.find({githubId: req.user.githubId})
         .then(function(images) {
             res.json(images);
         })
@@ -29,7 +29,7 @@ module.exports = function(app) {
     app.post("/api/image", passport.authenticate('jwt', {session: false}), (req, res) => {
 
         console.log(req.body);
-        db.ImageStore.create(req.body)
+        db.ImageStore.create({...req.body, githubId: req.user.githubId})
         .then(function(image) {
            
             db.User.findOneAndUpdate({githubId: req.user.githubId}, { $push: { images: image._id } }, { new: true })
